@@ -10,17 +10,20 @@
         fetchpriority="high"
       />
     </div>
-    <div class="nav-box">
-      <div
-        class="nav-item-box"
-        :class="swiper_index === index ? 'item-active' : ''"
-        @click="goto(index)"
-        v-for="(item, index) in navData"
-        :key="item.path"
-      >
-        {{ item.name }}
+    <div class="banner-box">
+      <div class="nav-box">
+        <div
+          class="nav-item-box"
+          :class="swiper_index === index ? 'item-active' : ''"
+          @click="goto(index)"
+          v-for="(item, index) in navData"
+          :key="item.path"
+        >
+          {{ item.name }}
+        </div>
       </div>
     </div>
+
     <swiper
       :options="swiperOption"
       class="swiper swiper-no-swiping"
@@ -290,46 +293,57 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 50%;
+      // object-position: 50% 50%;
     }
   }
-  .nav-box {
+  .banner-box {
     position: fixed;
-    right: 0;
-    top: 0;
     width: 100vw;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 1);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 1);
     z-index: 10;
-    .nav-item-box {
-      // padding: 0 25px;
-      min-width: 100px;
-      min-height: 50px;
-      width: 8vw;
-      height: 4vw;
+    .nav-box {
+      width: 100vw;
+      max-width: 1680px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
-      // line-height: 70px;
-      font-weight: bold;
-      color: rgba(255, 255, 255, 1);
-      text-shadow: 1px 2px rgba(0, 0, 0, 0.6), 2px 4px rgba(0, 0, 0, 0.4);
-      cursor: pointer;
-      transition: all 0.4s;
-      &:hover {
-        font-size: 12px;
-        opacity: 0.4;
+      background: rgba(0, 0, 0, 1);
+
+      .nav-item-box {
+        // padding: 0 25px;
+        min-width: 100px;
+        min-height: 50px;
+        width: 8vw;
+        height: 4vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        // line-height: 70px;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 1);
+        text-shadow: 1px 2px rgba(0, 0, 0, 0.6), 2px 4px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        transition: all 0.4s;
+        &:hover {
+          font-size: 12px;
+          opacity: 0.4;
+        }
+      }
+      .item-active {
+        color: rgb(163, 149, 109);
       }
     }
-    .item-active {
-      color: rgb(163, 149, 109);
-    }
   }
+
   .swiper {
     width: 100vw;
+    max-width: 1680px;
   }
   .author-box {
     width: 100%;
@@ -343,7 +357,7 @@ export default {
     -webkit-animation: bonnerTextAni 2s;
     -o-animation: bonnerTextAni 2s;
     .author {
-      width: 80%;
+      width: 60%;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -353,7 +367,7 @@ export default {
       // text-shadow: 1px 2px #c36622, 2px 4px #e9c6ac;
     }
     .job {
-      width: 80%;
+      width: 60%;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -609,15 +623,38 @@ export default {
     opacity: 1;
   }
 }
+
+@media screen and (min-width: 1335px) {
+  .main {
+    .content-box {
+      .left-box {
+        .text {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 768px) {
   .main {
-    .nav-box {
-      .nav-item-box {
-        font-size: 1.5vw;
-        &:hover {
-          font-size: 1.2vw;
-          opacity: 0.4;
+    .banner-box {
+      .nav-box {
+        .nav-item-box {
+          font-size: 1.5vw;
+          &:hover {
+            font-size: 1.2vw;
+            opacity: 0.4;
+          }
         }
+      }
+    }
+    .author-box {
+      .author {
+        font-size: 86px;
+      }
+      .job {
+        font-size: 18px;
       }
     }
   }
