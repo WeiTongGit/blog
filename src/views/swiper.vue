@@ -4,7 +4,7 @@
     <div class="background">
       <img
         class="bg-image"
-        src="../assets/background.webp"
+        src="../assets/background.png"
         width="1920"
         height="1920"
         fetchpriority="high"
@@ -14,8 +14,8 @@
       <div class="nav-box">
         <div
           class="nav-item-box"
-          :class="swiper_index === index ? 'item-active' : ''"
-          @click="goto(index)"
+          :class="swiper_index === item.index ? 'item-active' : ''"
+          @click="goto(item.index)"
           v-for="(item, index) in navData"
           :key="item.path"
         >
@@ -31,48 +31,97 @@
     >
       <swiper-slide>
         <div class="author-box">
-          <div class="author">lntongwei</div>
-          <div class="job">Jazz Musician, Trumpeter</div>
+          <div class="author">Chuangye Liu</div>
+          <div class="job">Pianist, Composer, Educator</div>
         </div>
       </swiper-slide>
       <swiper-slide>
         <div class="content-box">
           <div class="left-box">
             <div class="text">
-              Since 1998, Jeb Patton has toured throughout the United States and
-              abroad as the pianist with the Heath Brothers and the Jimmy Heath
-              Quartet. He has performed with Etta Jones, George Coleman, Charles
-              McPherson, Winard Harper, Rodney Green, Antonio Hart, the Dizzy
-              Gillespie All Stars, The Vanguard Jazz Orchestra, Roberta
-              Gambarini, Peter and Will Anderson, as well as with other top
-              artists. <br />
-              <br />Jeb’s latest two CDs, Tenthish and Shades and Tones, were
-              released in 2018 and 2016 respectively on the Cellar Live label.
-              Jeb’s is also a published author, educator and professor at Queens
-              College and City College.
+              Chuangye Liu is a multifaceted musician renowned for his prowess
+              as a jazz pianist, composer, and educator. His musical journey
+              spans a diverse range of styles, encompassing everything from
+              Bebop and Latin to Mode jazz.
+              <br />
+              <br />
+              Liu's musical roots run deep, drawing inspiration from legendary
+              jazz pioneers such as Bud Powell, Thelonius Monk, and Barry
+              Harris. These influences have played a pivotal role in shaping his
+              distinctive musical voice.
+              <br />
+              <br />
+              In 2015, Chuangye Liu embarked on a transformative chapter of his
+              life by relocating to Boston to study at the prestigious Berklee
+              College of Music. There, he had the privilege of studying under
+              the tutelage of the celebrated American jazz pianist Joanne
+              Brackeen.
+              <br />
+              <br />
+              The turning point in Liu's artistic career came in 2016 when he
+              became a disciple of the legendary jazz master Barry Harris. This
+              period was a priceless experience that enriched his musicality
+              profoundly. Under Harris's guidance, Liu not only mastered the
+              essence of bebop jazz but also delved deep into the emotions and
+              wisdom behind the music. This invaluable time became a pivotal
+              moment in his musical journey and even in his life.
             </div>
           </div>
           <div class="right-box">
-            <img class="image" src="../assets/person.webp" alt="" />
+            <img class="image" src="../assets/person1.jpg" alt="" />
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="content-box">
+          <div class="left-box">
+            <div class="text">
+              In 2017, Chuangye Liu led a remarkable Chinese tour featuring
+              esteemed musicians such as saxophonist Wayne Escoffery, bassist
+              Kim Clarke, and jazz drummer Ronnie Burrage. Their performances
+              resonated with audiences in cities like Beijing, Wuhu, Dalian, and
+              included two unforgettable concerts at the Beijing Blue Note Jazz
+              Club. During the China tour, Chuangye Liu also conducted
+              masterclasses at Wuhu and Dalian Art Institutes, leaving a lasting
+              impact on aspiring musicians.
+              <br />
+              <br />
+              In 2019, Chuangye Liu continued his pursuit of musical excellence
+              by moving to New York City and enrolling in SUNY Purchase to
+              pursue a master's degree, further enriching his musical palette.
+              <br />
+              <br />
+              Fast forward to 2023, Chuangye Liu's artistic journey reached
+              another milestone with the creation and release of his debut
+              album, "Live at Ornithology." This remarkable album featured
+              collaborations with accomplished bassist Ugonna Okegwo and drummer
+              Taro Okamoto, receiving unanimous acclaim from both audiences and
+              critics alike.
+            </div>
+          </div>
+          <div class="right-box">
+            <img class="image" src="../assets/person2.jpg" alt="" />
           </div>
         </div>
       </swiper-slide>
       <swiper-slide>
         <div class="flex">
-          <p class="info-box">
-            <a class="email" href="mailto:lntongwei@gmail.com"
-              >lntongwei@gmail.com</a
-            >
-          </p>
+          <div class="info-box">
+            <a class="email" href="mailto:chuangyeliu88@gmail.com"
+              >E-mail: chuangyeliu88@gmail.com
+            </a>
+            <div class="tel">TEL: 2013201691</div>
+          </div>
         </div>
       </swiper-slide>
       <swiper-slide>
         <div class="audio-box" @click="stop($event)" @mousemove="stop($event)">
+          <div class="audio-name">Live at Ornithology (2023)</div>
           <div style="width: 100%; margin: 0" id="aplayer"></div>
-          <video class="video-box" controls>
+          <!-- <video class="video-box" controls>
             <source src="../assets/mp4/test2.mp4" />
             您的浏览器不支持 video 元素。
-          </video>
+          </video> -->
         </div>
       </swiper-slide>
 
@@ -107,20 +156,7 @@ export default {
       default: function () {
         return [
           //数据格式
-          {
-            id: 1,
-            name: '美人鱼',
-            url: require('../assets/mp3/test.mp3'),
-            cover: 'ChenYou',
-            singer: '林俊杰',
-          },
-          {
-            id: 2,
-            name: '起风了',
-            url: require('../assets/mp3/test.mp3'),
-            cover: 'ChenYou',
-            singer: '林俊杰',
-          },
+          {},
         ]
       },
     },
@@ -142,7 +178,11 @@ export default {
         // },
         on: {
           slideChangeTransitionEnd: function () {
-            that.swiper_index = this.activeIndex
+            if (this.activeIndex === 2) {
+              that.swiper_index = 1
+            } else {
+              that.swiper_index = this.activeIndex
+            }
             console.log(this.activeIndex) //切换结束时，告诉我现在是第几个slide
           },
         },
@@ -151,47 +191,64 @@ export default {
         {
           name: 'Home',
           path: 'Home',
+          index: 0,
         },
         {
           name: 'Bio',
           path: 'Bio',
+          index: 1,
         },
         {
           name: 'Contact',
           path: 'Contact',
+          index: 3,
         },
         {
           name: 'Media',
           path: 'Media',
+          index: 4,
         },
       ],
       audio: [
         // 歌曲列表
         {
-          name: 'Enter Hallownest', // 歌曲名字
-          artist: 'Christopher Larkin', // 歌曲演唱者
+          name: 'For Barry', // 歌曲名字
+          artist: 'Chuangye Liu', // 歌曲演唱者
           // 歌曲地址（这里用外链地址）
-          url: require('../assets/mp3/test.mp3'),
-          cover:
-            'http://imge.kugou.com/stdmusic/150/20170815/20170815070007812976.jpg', // 歌曲头像
+          url: require('../assets/mp3/For Barry.wav'),
+          cover: require('../assets/专辑封面.jpg'), // 歌曲头像
           lrc: '', // 歌词
           theme: 'rgb(127, 218, 180)', // 播放这首歌曲时的主题色
         },
         {
-          name: 'Dirtmouth',
-          artist: 'Christopher Larkin',
-          url: require('../assets/mp3/test2.mp3'),
-          cover:
-            'http://imge.kugou.com/stdmusic/150/20200606/20200606220631519630.jpg',
+          name: "Liu's Blues",
+          artist: 'Chuangye Liu',
+          url: require("../assets/mp3/Liu's Blues.mp3"),
+          cover: require('../assets/专辑封面.jpg'),
           lrc: '',
           theme: 'rgb(61, 162, 230)',
         },
         {
-          name: 'Crossroads',
-          artist: 'Christopher Larkin',
-          url: require('../assets/mp3/test3.mp3'),
-          cover:
-            'http://imge.kugou.com/stdmusic/150/20200812/20200812134914113741.jpg',
+          name: 'Cunning Rabbit  Three Burrows',
+          artist: 'Chuangye Liu',
+          url: require('../assets/mp3/Cunning Rabbit  Three Burrows.mp3'),
+          cover: require('../assets/专辑封面.jpg'),
+          lrc: '',
+          theme: '#baf',
+        },
+        {
+          name: 'A Drop in the Ocean',
+          artist: 'Chuangye Liu',
+          url: require('../assets/mp3/A Drop in the Ocean.mp3'),
+          cover: require('../assets/专辑封面.jpg'),
+          lrc: '',
+          theme: '#baf',
+        },
+        {
+          name: 'Silver Lining',
+          artist: 'Chuangye Liu',
+          url: require('../assets/mp3/Silver Lining.mp3'),
+          cover: require('../assets/专辑封面.jpg'),
           lrc: '',
           theme: '#baf',
         },
@@ -407,6 +464,10 @@ export default {
   }
   .info-box {
     margin-bottom: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     .email {
       font-size: 2vw;
       color: rgb(163, 149, 109);
@@ -414,6 +475,12 @@ export default {
       &:hover {
         color: rgba(255, 255, 255, 0.8);
       }
+    }
+    .tel {
+      margin-top: 20px;
+      font-size: 2vw;
+      color: rgb(163, 149, 109);
+      text-decoration: none;
     }
   }
 
@@ -423,6 +490,12 @@ export default {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    .audio-name {
+      margin-bottom: 20px;
+      font-size: 2vw;
+      color: rgb(163, 149, 109);
+      text-decoration: none;
+    }
     .video-box {
       margin-top: 20px;
       width: 60%;
