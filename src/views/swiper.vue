@@ -215,7 +215,7 @@ export default {
           name: 'For Barry', // 歌曲名字
           artist: 'Chuangye Liu', // 歌曲演唱者
           // 歌曲地址（这里用外链地址）
-          url: require('../assets/mp3/For Barry.wav'),
+          url: require('../assets/mp3/For Barry.mp3'),
           cover: require('../assets/专辑封面.jpg'), // 歌曲头像
           lrc: '', // 歌词
           theme: 'rgb(127, 218, 180)', // 播放这首歌曲时的主题色
